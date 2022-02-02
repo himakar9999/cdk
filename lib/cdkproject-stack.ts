@@ -1,16 +1,15 @@
-import { Stack, StackProps } from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as cdk from '@aws-cdk/core';
+import * as ec2 from '@aws-cdk/aws-ec2';
 
-export class CdkprojectStack extends Stack {
-  constructor(scope: Construct, id: string, props?: StackProps) {
+export class CdkprojectStack extends cdk.Stack {
+  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'CdkprojectQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    // The  code thst defines your stack goes here
+    const Vpc = new  ec2.Vpc(this, 'CDKVPC', {
+      cidr: "10.0.0.0/16",
+      maxAzs: 2,
+      natGateways:0,
+    });
   }
 }
